@@ -1,6 +1,3 @@
-<div>
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +9,15 @@
 </head>
 <body>
 
+<nav>
+    <a href="/">home</a>
+    <a href="/contact">contact</a>
+    <a href="/about">about</a>
+</nav>
+
+
+{{ $slot  }}
+
+
 </body>
 </html>
-
-</div>
