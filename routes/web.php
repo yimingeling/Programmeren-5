@@ -12,6 +12,8 @@ Route::get('/contact', function () {
 });
 
 Route::get('/about', function () {
+
+    //    return ['foo' => 'bar'];
     return view('about');
 });
 

@@ -1,9 +1,15 @@
 # changelog 
-
+##
 ik heb een **blah**
 [lijpelink](www.google.com)
 ![alt text](./)
 
+##
+View aangemaakt voor home
+controller pagina gemaakt
+
+
+##
 Onderwerp: Tetris games
 User stories
 #	User stories		Acceptatie Criteria 	DoD	MoSCoW
@@ -18,4 +24,4 @@ User stories
 ERD 
 Feedback Planning
 
-
+##
