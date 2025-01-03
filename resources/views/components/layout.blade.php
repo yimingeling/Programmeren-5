@@ -15,8 +15,8 @@
     <a href="/about">about</a>
 </nav>
 
-
-{{ $slot  }}
+<?php echo $slot ?>
+{{--{{ $slot  }}--}}
 
 
 </body>

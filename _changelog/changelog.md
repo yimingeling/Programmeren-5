@@ -8,6 +8,8 @@ ik heb een **blah**
 View aangemaakt voor home
 controller pagina gemaakt
 
+## 23/10
+eerste migration gemaakt
 
 ##
 Onderwerp: Tetris games
