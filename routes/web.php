@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\LicenceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,8 @@ Route::get('/', function () {
 });
 
 Route::resource('games', GamesController::class);
+
+Route::resource('licence', LicenceController::class);
 
 
 Route::get('/contact', function () {
