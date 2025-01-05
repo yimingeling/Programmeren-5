@@ -57,8 +57,7 @@
 </nav>
 
 <main class="p-8">
-    <?php echo $slot ?>
-    {{--{{ $slot  }}--}}
+    {{ $slot  }}
 </main>
 
 </body>
