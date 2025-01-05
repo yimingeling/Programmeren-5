@@ -23,56 +23,63 @@ class GamesController extends Controller
 //    }
 
 
-    public function index(game $games)
+    // Display all games, or games filtered by search query and category
+    public function index(Request $request)
     {
-//        //
-//        $licence = Licence::find($games->licence_id);
-//        $games = Game::query();
-//        $games = $games->with('licence')->get();
-
-
-//        return view('games.index', compact('games', 'licence'));
-
-
-        $query = '';
-        // get all genres for the dropdown
+        // Get all categories for the dropdown
         $categories = Category::all();
-        // get all public albums from public users
-        $games = Game::where('active', 1);
 
+        // Initialize query for fetching games
+        $games = Game::where('active', 1); // Get only active games
 
-        // pass the albums to the view
-        return view('games.index', compact('games', 'categories', 'query'));
+        // Apply search filter if query exists
+        if ($request->has('query') && $request->input('query') != '') {
+            $games->where('name', 'LIKE', '%' . $request->input('query') . '%');
+        }
 
+        // Apply category filter if selected
+        if ($request->has('category') && $request->input('category') != '') {
+            $games->whereHas('categories', function ($q) use ($request) {
+                $q->where('categories.id', $request->input('category'));
+            });
+        }
 
+        // Paginate results, 10 per page
+        $games = $games->paginate(10);
+
+        // Pass games and categories to the view
+        return view('games.index', compact('games', 'categories'));
     }
 
+    // Handle search functionality for games
     public function search(Request $request)
     {
-        $query = $request->input('query'); // Text search input
-        $category = $request->input('category'); // Category dropdown input
+        $query = $request->input('query'); // Search query
+        $category = $request->input('category'); // Selected category
 
-        // Build the query
+        // Build the query to fetch games
         $games = Game::query();
 
+        // Apply text search if provided
         if ($query) {
             $games->where('name', 'LIKE', "%{$query}%");
         }
 
+        // Apply category filter if provided
         if ($category) {
             $games->whereHas('categories', function ($q) use ($category) {
                 $q->where('categories.id', $category);
             });
         }
 
-        // Fetch results
+        // Paginate results (10 games per page)
         $games = $games->paginate(10);
 
-        // Get all categories for the dropdown
+        // Get all categories for the filter dropdown
         $categories = Category::all();
 
-        // Return the view with results
-        return view('games.index', compact('games', 'categories'));
+        // Return the view with filtered games
+        return view('games.index', compact('games', 'categories', 'query', 'category'));
     }
 
     /**

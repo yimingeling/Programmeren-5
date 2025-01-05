@@ -6,29 +6,52 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body>
 
-<nav>
-    <a href="/">home</a>
-    <a href="/contact">contact</a>
-    <a href="/register">register</a>
-    <a href="/profile">profile</a>
-    <!-- Authentication -->
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
+<nav class="bg-gray-800 text-white p-4 flex items-center justify-between">
+    <!-- Navigation Links -->
+    <div class="flex space-x-4">
+        <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+        <a href="/games" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tetris Games
+            Overview</a>
 
-        <x-dropdown-link :href="route('logout')"
-                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-            {{ __('Log Out') }}
-        </x-dropdown-link>
-    </form>
+    </div>
+
+    <!-- Authentication -->
+    <div class="flex row">
+        @if(auth()->check())
+            <a href="/profile"
+               class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ Auth::user()->name }}</a>
+
+            <form method="POST" action="{{ route('logout') }}" class="inline">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+                                 class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                 onclick="event.preventDefault(); this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-dropdown-link>
+            </form>
+        @else
+            <a href="/login"
+               class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+
+            <a href="/register"
+               class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
+
+        @endif
+
+    </div>
+
 </nav>
 
-<?php echo $slot ?>
-{{--{{ $slot  }}--}}
-
+<main class="p-8">
+    <?php echo $slot ?>
+    {{--{{ $slot  }}--}}
+</main>
 
 </body>
 </html>

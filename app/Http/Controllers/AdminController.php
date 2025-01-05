@@ -17,7 +17,7 @@ class AdminController extends Controller
         }
 
         if (auth()->user()->role != 1) {
-            return view('home');
+            return redirect('/');
 
         }
 

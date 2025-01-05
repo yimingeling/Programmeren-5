@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GamesController;
+use App\http\Controllers\HomeController;
 use App\Http\Controllers\LicenceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::resource('/', HomeController::class);
 
 Route::resource('games', GamesController::class);
 

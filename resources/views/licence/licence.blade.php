@@ -1,7 +1,10 @@
 <x-layout>
 
     @foreach($licences as $index => $licence)
-        {{$licence->licenced_to}}
+        <a href="">
+            {{$licence->licenced_to}}
+
+        </a>
         <br>
 
     @endforeach
