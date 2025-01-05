@@ -14,6 +14,9 @@ Route::resource('games', GamesController::class);
 Route::resource('licence', LicenceController::class);
 
 
+Route::get('/search', [GamesController::class, 'search'])->name('search');
+
+
 Route::get('/contact', function () {
     return view('contact');
 });
