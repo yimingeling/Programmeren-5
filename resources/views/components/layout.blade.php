@@ -14,7 +14,16 @@
     <a href="/contact">contact</a>
     <a href="/register">register</a>
     <a href="/profile">profile</a>
+    <!-- Authentication -->
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
 
+        <x-dropdown-link :href="route('logout')"
+                         onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-dropdown-link>
+    </form>
 </nav>
 
 <?php echo $slot ?>

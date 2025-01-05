@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\LicenceController;
 use App\Http\Controllers\ProfileController;
@@ -12,6 +13,8 @@ Route::get('/', function () {
 Route::resource('games', GamesController::class);
 
 Route::resource('licence', LicenceController::class);
+
+Route::resource('admin', AdminController::class);
 
 
 Route::get('/search', [GamesController::class, 'search'])->name('search');

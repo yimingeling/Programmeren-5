@@ -1,6 +1,6 @@
 <x-layout>
 
-    <form method="POST" enctype="multipart/form-data" action={{ route('games.store') }} >
+    <form method="POST" enctype="multipart/form-data" action={{ route('games.update', $game->id) }} }}>
         @csrf
         @method('PUT')
 
@@ -20,27 +20,27 @@
 
 
         <div>
-            <label for="category" class="">categories</label>
+            <label for="category" class="">Categories</label>
             <br>
             @foreach ($category as $index)
-                <input type="checkbox" id="category" name="category">
-
-                <option value="{{ $index->id }}">
-                    {{ $index->name }}
-                </option>
+                <input type="checkbox" id="category-{{ $index->id }}" name="categories[]" value="{{ $index->id }}"
+                    {{ in_array($index->id, $game->categories->pluck('id')->toArray()) ? 'checked' : '' }}>
+                <label for="category-{{ $index->id }}">{{ $index->name }}</label>
             @endforeach
         </div>
+
 
         <div>
             <label for="licence" class="">Licence</label>
             <select id="licence" name="licence" class="">
                 @foreach ($licence as $index)
-                    <option value="{{ $index->id }} {{ $index->id == $game->licence_id ? 'selected' : '' }}">
+                    <option value="{{ $index->id }}" {{ $index->id == $game->licence_id ? 'selected' : '' }}>
                         {{ $index->licenced_to }}
                     </option>
                 @endforeach
             </select>
         </div>
+
 
         <div>
             <label for="image" class="">Image</label>
@@ -49,11 +49,11 @@
 
         <div>
             <label for="active" class="">
-                <input type="checkbox" id="active" name="active" value="1" {{ $game->active ? 'checked' : '' }}class=""
-                       checked>
+                <input type="checkbox" id="active" name="active" value="1" {{ $game->active ? 'checked' : '' }}>
                 Make this game active
             </label>
         </div>
+
 
         <h2>Categories:</h2>
 
