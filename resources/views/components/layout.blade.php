@@ -12,7 +12,9 @@
 <nav>
     <a href="/">home</a>
     <a href="/contact">contact</a>
-    <a href="/about">about</a>
+    <a href="/register">register</a>
+    <a href="/profile">profile</a>
+
 </nav>
 
 <?php echo $slot ?>

@@ -17,9 +17,20 @@
             <input type="text" id="studio" name="studio" class="" required>
         </div>
 
-
         <div>
-            <label for="licence" class="">Genre</label>
+            <label for="category" class="">categories</label>
+            <br>
+            @foreach ($category as $index)
+                <input type="checkbox" id="category" name="category">
+
+                <option value="{{ $index->id }}">
+                    {{ $index->name }}
+                </option>
+            @endforeach
+        </div>
+        
+        <div>
+            <label for="licence" class="">Licence</label>
             <select id="licence" name="licence" class="">
                 @foreach ($licence as $index)
                     <option value="{{ $index->id }}">{{ $index->licenced_to }}</option>
