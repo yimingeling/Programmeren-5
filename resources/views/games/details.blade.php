@@ -2,12 +2,14 @@
     <!-- Game Name -->
     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
         <h1 class="text-3xl font-bold text-gray-800">{{ $game->name }}</h1>
-    </div>
-
-    <!-- Categories -->
-    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-        <p class="text-xl font-semibold text-gray-700">Categories:</p>
-        <ul class="list-disc pl-5 text-gray-600">
+        <br>
+        <p>Year: {{ $game->year }}</p>
+        <p>Studio: {{ $game->studio }}</p>
+        <p>Licenced by: {{ $game->licence->licenced_to }}</p>
+        <p>Uploaded by: {{$game->user->name}} </p>
+        <br>
+        <p class="font-semibold text-black">Categories:</p>
+        <ul class="list-disc pl-5 text-black">
             @forelse($game->categories as $category)
                 <li>{{ $category->name }}</li>
             @empty

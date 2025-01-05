@@ -26,5 +26,10 @@ class Game extends Model
         return $this->belongsToMany(Category::class, 'category_games');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);  // Assuming the Game model has a 'user_id' foreign key
+    }
+    
     use HasFactory;
 }

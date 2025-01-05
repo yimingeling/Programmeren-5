@@ -18,6 +18,8 @@ Route::resource('admin', AdminController::class);
 
 Route::get('/search', [GamesController::class, 'search'])->name('search');
 
+Route::post('games/{game}/toggleActive', [GamesController::class, 'toggleActive'])->name('games.toggleActive');
+
 
 Route::get('/contact', function () {
     return view('contact');

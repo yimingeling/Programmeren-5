@@ -252,4 +252,20 @@ class GamesController extends Controller
         // Redirect after deletion
         return redirect()->route('games.index')->with('success', 'Album deleted successfully!');
     }
+
+    public function toggleActive(Request $request, Game $game)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'active' => 'required|boolean',
+        ]);
+
+        // Update the active status
+        $game->active = $request->input('active'); // Set active status based on the request
+        $game->save(); // Save the updated game
+
+        // Redirect back with a success message
+        return redirect()->route('admin.index')->with('success', 'Game active status updated successfully!');
+    }
+
 }

@@ -11,26 +11,34 @@
 </head>
 <body>
 
-<nav class="bg-gray-800 text-white p-4 flex items-center justify-between">
+<nav class="bg-purple-500 text-white p-4 flex items-center justify-between">
     <!-- Navigation Links -->
     <div class="flex space-x-4">
-        <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-        <a href="/games" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tetris Games
+        <a href="/" class="text-white hover:text-blue-400  px-3 py-2 rounded-md text-sm font-medium">Home</a>
+        <a href="/games" class="text-white hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Tetris Games
             Overview</a>
 
     </div>
 
     <!-- Authentication -->
     <div class="flex row">
+        @if (auth()->user()->role == 1)
+            <a href="/admin" class="text-white hover:text-blue-400  px-3 py-2 rounded-md text-sm font-medium">
+                Admin overview
+            </a>
+
+        @endif
+
+
         @if(auth()->check())
             <a href="/profile"
-               class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ Auth::user()->name }}</a>
+               class="text-white hover:text-blue-400  px-3 py-2 rounded-md text-sm font-medium">{{ Auth::user()->name }}</a>
 
             <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
 
                 <x-dropdown-link :href="route('logout')"
-                                 class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                 class="text-white hover:text-black px-3 py-2 rounded-md text-sm font-medium"
                                  onclick="event.preventDefault(); this.closest('form').submit();">
                     {{ __('Log Out') }}
                 </x-dropdown-link>

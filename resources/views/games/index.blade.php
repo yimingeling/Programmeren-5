@@ -52,22 +52,19 @@
 
                     <!-- Game Info -->
                     <div class="text-sm text-gray-700">
-                        {{$game->year}} <br>
-                        {{$game->studio}} <br>
-                        {{$game->user}} <br>
-                        {{$game->licence->licenced_to}} <br>
-
-                        <!-- Categories -->
-                        <div class="mt-2">
-                            <p><strong>Categories:</strong></p>
-                            <ul class="list-disc pl-4 text-gray-600">
-                                @forelse($game->categories as $category)
-                                    <li>{{ $category->name }}</li>
-                                @empty
-                                    <li>No categories assigned to this game.</li>
-                                @endforelse
-                            </ul>
-                        </div>
+                        <p>Year: {{ $game->year }}</p>
+                        <p>Studio: {{ $game->studio }}</p>
+                        <p>Licenced by: {{ $game->licence->licenced_to }}</p>
+                        <p>Uploaded by: {{$game->user->name}} </p>
+                        <br>
+                        <p class="font-semibold text-black">Categories:</p>
+                        <ul class="list-disc pl-5 text-black">
+                            @forelse($game->categories as $category)
+                                <li>{{ $category->name }}</li>
+                            @empty
+                                <li>No categories assigned to this game.</li>
+                            @endforelse
+                        </ul>
                     </div>
 
                     <div class="mt-4 flex justify-between">
