@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
-    
+
 class GamesController extends Controller
 {
 
@@ -116,6 +116,8 @@ class GamesController extends Controller
             'studio' => 'required',
             'active' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'categories' => 'required|array', // Validate category input as an array
+
         ]);
 
         $game = new Game();
@@ -139,11 +141,10 @@ class GamesController extends Controller
 
         $game->user_id = auth()->id();
 
-//        $game->category()->attach($category_id);
-
 
         $game->save();
 
+        $game->categories()->sync($request->input('categories'));
 
     }
 
@@ -198,11 +199,13 @@ class GamesController extends Controller
     {
         // Validate the incoming data
         $request->validate([
-            'name' => 'required|string|max:255',
-            'year' => 'required|integer',
-            'studio' => 'required|string|max:255',
-            'active' => 'required|boolean',
+            'name' => 'required',
+            'year' => 'required',
+            'studio' => 'required',
+            'active' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'categories' => 'required|array', // Validate category input as an array
+
         ]);
 
         // Update the game's attributes
@@ -225,6 +228,8 @@ class GamesController extends Controller
 
         // Save changes
         $game->save();
+        
+        $game->categories()->sync($request->input('categories'));
 
         // Redirect back with a success message
         return redirect()->route('games.index')->with('success', 'Game updated successfully!');

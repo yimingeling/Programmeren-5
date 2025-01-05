@@ -29,11 +29,12 @@
 
         <!-- Categories -->
         <div class="mb-4">
-            <label for="category" class="block text-lg font-semibold text-gray-700">Categories</label>
+            <label for="categories" class="block text-lg font-semibold text-gray-700">Categories</label>
             <div class="space-y-2 mt-2">
                 @foreach ($category as $index)
                     <div class="flex items-center">
-                        <input type="checkbox" id="category-{{ $index->id }}" name="category[]" value="{{ $index->id }}"
+                        <input type="checkbox" id="category-{{ $index->id }}" name="categories[]"
+                               value="{{ $index->id }}"
                                class="mr-2">
                         <label for="category-{{ $index->id }}" class="text-gray-600">{{ $index->name }}</label>
                     </div>
