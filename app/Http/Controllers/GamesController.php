@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 
-
+    
 class GamesController extends Controller
 {
 
@@ -62,7 +62,9 @@ class GamesController extends Controller
 
         // Apply text search if provided
         if ($query) {
-            $games->where('name', 'LIKE', "%{$query}%");
+            $games->where('name', 'LIKE', "%{$query}%")
+                ->orWhere('year', 'like', "%{$query}%")
+                ->orWhere('studio', 'like', "%{$query}%");
         }
 
         // Apply category filter if provided
@@ -171,15 +173,15 @@ class GamesController extends Controller
         if (auth()->check()) {
             $game = Game::findOrFail($id);
 
-            // Check if the logged-in user is the owner of the album
+            // Check if the logged-in user is the owner of the game
             if (auth()->id() === $game->user_id) {
                 $licence = Licence::all();
                 $category = category::all();
 
-                // return the album information and genres to the display page
+                // return the game information and category to the display page
                 return view('games.edit', compact('game', 'licence', 'category'));
             } else {
-                // Redirect to albums index if the user is not the owner
+                // Redirect to game index if the user is not the owner
                 return redirect()->route('games.index')->with('error', 'You do not have permission to edit this game.');
             }
         } else {
@@ -238,15 +240,15 @@ class GamesController extends Controller
             return redirect()->route('login')->with('error', 'You must be logged in to delete an album.');
         }
 
-        // Find the album or fail
+        // Find the game or fail
         $game = Game::findOrFail($id);
 
-//         Check if user is the owner of the album or an admin
+//         Check if user is the owner of the game or an admin
         if (auth()->user()->id !== $game->user_id && auth()->user()->role !== 1) {
             return redirect()->route('games.index')->with('error', 'You do not have permission to delete this album.');
         }
 
-        // Delete the album
+        // Delete the game
         $game->delete();
 
         // Redirect after deletion

@@ -12,6 +12,15 @@ class Game extends Model
 //    protected $table = 'games';
 
 //    protected $fillable
+    protected $fillable = [
+        'name',
+        'name',
+        'year',
+        'studio',
+        'active',
+        'image',
+        'user_id',
+    ];
 
     public $timestamps = false;
 
@@ -30,6 +39,6 @@ class Game extends Model
     {
         return $this->belongsTo(User::class);  // Assuming the Game model has a 'user_id' foreign key
     }
-    
+
     use HasFactory;
 }

@@ -1,5 +1,7 @@
 <x-layout>
     <!-- Loop through each game -->
+
+
     @foreach($games as $index => $game)
         <div class="flex justify-between content-center max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6 mb-6">
             <!-- Game Name -->

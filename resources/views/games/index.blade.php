@@ -34,8 +34,18 @@
 
 <x-layout>
     <div>
-        <!-- Search Bar Section -->
-        <x-searchbar :categories="$categories" class="mb-6"/>
+        <div class="flex justify-between">
+            <div>
+                <!-- Search Bar Section -->
+                <x-searchbar :categories="$categories" class="mb-6"/>
+            </div>
+            @if(auth()->check())
+                <a href="{{ route('games.create') }}"
+                   class="bg-blue-500 h-9 text-white px-2 py-1 rounded-md hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Create Game
+                </a>
+            @endif
+        </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($games as $index => $game)

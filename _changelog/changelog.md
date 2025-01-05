@@ -2,10 +2,6 @@
 
 ##
 
-ik heb een **blah**
-[lijpelink](www.google.com)
-![alt text](./)
-
 ##
 
 View aangemaakt voor home
@@ -34,8 +30,9 @@ User stories
 ERD
 Feedback Planning
 
-##
+## 3/1
 
-Erd aangepast
+Erd aangepast -> erdUpdated
+ik heb licences naar een 1 to many relationship
 
 tabel gemaakt: licences en games aangepast

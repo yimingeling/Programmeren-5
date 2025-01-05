@@ -22,7 +22,7 @@
 
     <!-- Authentication -->
     <div class="flex row">
-        @if (auth()->user()->role == 1)
+        @if (auth()->check() && auth()->user()->role == 1)
             <a href="/admin" class="text-white hover:text-blue-400  px-3 py-2 rounded-md text-sm font-medium">
                 Admin overview
             </a>
@@ -45,10 +45,10 @@
             </form>
         @else
             <a href="/login"
-               class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+               class="text-white hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
 
             <a href="/register"
-               class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
+               class="text-white hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
 
         @endif
 
